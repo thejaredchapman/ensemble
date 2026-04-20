@@ -3,10 +3,13 @@ import { ExerciseCard } from "./ExerciseCard";
 export function ExerciseGrid({ exercises, onSelect }) {
   if (exercises.length === 0) {
     return (
-      <div className="empty-state" role="status">
-        <span aria-hidden="true">🎭</span>
-        <p>No exercises match your filters.</p>
-      </div>
+      <section className="grid" aria-label="Exercise list">
+        <div className="empty" role="status">
+          <div className="empty__emoji" aria-hidden="true">🎭</div>
+          <p className="empty__text">No exercises match your filters.</p>
+          <p className="empty__hint">Try clearing a filter or widening your search.</p>
+        </div>
+      </section>
     );
   }
 
