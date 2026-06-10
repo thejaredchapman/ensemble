@@ -273,6 +273,78 @@ body::after {
   background: var(--glass-bg-hover);
 }
 
+/* ── Accent color picker ────────────────────────────────── */
+.accent-picker {
+  position: relative;
+}
+
+.accent-picker__swatch {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.accent-picker__swatch:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-md);
+}
+
+.accent-picker__popover {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  z-index: 20;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.accent-picker__wheel {
+  position: relative;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: conic-gradient(in hsl longer hue, hsl(0 100% 50%), hsl(0 100% 50%));
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.accent-picker__pointer {
+  position: absolute;
+  top: var(--pointer-y);
+  left: var(--pointer-x);
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--bg-0);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), var(--shadow-sm);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.accent-picker__reset {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.accent-picker__reset:hover {
+  background: var(--glass-bg-hover);
+  color: var(--text);
+}
+
 /* ── Controls bar ───────────────────────────────────────── */
 .controls {
   padding: clamp(1rem, 2vw, 1.5rem);
@@ -661,6 +733,8 @@ body::after {
   animation: modal-in 0.4s var(--ease);
 }
 
+[data-theme="dark"] .modal { background: rgba(26, 15, 58, 0.9); }
+
 [data-theme="light"] .modal { background: rgba(255, 255, 255, 0.85); }
 
 @keyframes modal-in {
@@ -843,6 +917,8 @@ body::after {
 .sort__select:focus-visible,
 .clear-all:focus-visible,
 .theme-toggle:focus-visible,
+.accent-picker__swatch:focus-visible,
+.accent-picker__reset:focus-visible,
 .modal__close:focus-visible {
   outline-offset: 2px;
 }

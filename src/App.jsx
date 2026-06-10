@@ -3,6 +3,8 @@ import { exercises } from "./data/exercises";
 import { FilterBar } from "./components/FilterBar";
 import { ExerciseGrid } from "./components/ExerciseGrid";
 import { Modal } from "./components/Modal";
+import { AccentPicker } from "./components/AccentPicker";
+import { computeAccentVars } from "./utils/accentColor";
 import "./App.css";
 
 const parseFirstNumber = (str) => {
@@ -36,12 +38,30 @@ export default function App() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
+  const [accentHue, setAccentHue] = useState(() => {
+    const stored = localStorage.getItem("accentHue");
+    return stored !== null ? Number(stored) : null;
+  });
+
   useEffect(() => {
     document.documentElement.dataset.theme = darkMode ? "dark" : "light";
     localStorage.setItem("darkMode", String(darkMode));
   }, [darkMode]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (accentHue === null) {
+      ["--accent-1", "--accent-2", "--accent-3"].forEach((v) => root.style.removeProperty(v));
+      localStorage.removeItem("accentHue");
+      return;
+    }
+    const vars = computeAccentVars(accentHue, darkMode ? "dark" : "light");
+    Object.entries(vars).forEach(([key, value]) => root.style.setProperty(key, value));
+    localStorage.setItem("accentHue", String(accentHue));
+  }, [accentHue, darkMode]);
+
   const toggleDark = useCallback(() => setDarkMode((d) => !d), []);
+  const resetAccent = useCallback(() => setAccentHue(null), []);
 
   const clearAll = useCallback(() => {
     setSearch("");
@@ -100,6 +120,7 @@ export default function App() {
               <span className="hero__stat-value">{exercises.length}</span>
               <span className="hero__stat-label">Total</span>
             </div>
+            <AccentPicker hue={accentHue} onChange={setAccentHue} onReset={resetAccent} darkMode={darkMode} />
             <button
               className="theme-toggle"
               onClick={toggleDark}
