@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Misc local artifacts
+improvapp.zip
+improvapp_extracted/
