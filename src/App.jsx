@@ -3,6 +3,7 @@ import { exercises } from "./data/exercises";
 import { FilterBar } from "./components/FilterBar";
 import { ExerciseGrid } from "./components/ExerciseGrid";
 import { Modal } from "./components/Modal";
+import { Contact } from "./components/Contact";
 import { AccentPicker } from "./components/AccentPicker";
 import { computeAccentVars } from "./utils/accentColor";
 import "./App.css";
@@ -32,6 +33,7 @@ export default function App() {
   const [activeEnergy, setActiveEnergy] = useState(null);
   const [sortKey, setSortKey] = useState("title-asc");
   const [selected, setSelected] = useState(null);
+  const [view, setView] = useState("library");
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem("darkMode");
     if (stored !== null) return stored === "true";
@@ -129,29 +131,41 @@ export default function App() {
             >
               {darkMode ? "☀" : "☾"}
             </button>
+            <button
+              className="nav-link"
+              onClick={() => setView(view === "contact" ? "library" : "contact")}
+            >
+              {view === "contact" ? "← Library" : "Contact"}
+            </button>
           </div>
         </div>
       </section>
 
-      <FilterBar
-        search={search}
-        onSearch={setSearch}
-        activeCategory={activeCategory}
-        onCategory={setActiveCategory}
-        activeFormat={activeFormat}
-        onFormat={setActiveFormat}
-        activeEnergy={activeEnergy}
-        onEnergy={setActiveEnergy}
-        sortKey={sortKey}
-        onSort={setSortKey}
-        onClear={clearAll}
-        hasActive={hasActiveFilters}
-      />
+      {view === "contact" ? (
+        <Contact onBack={() => setView("library")} />
+      ) : (
+        <>
+          <FilterBar
+            search={search}
+            onSearch={setSearch}
+            activeCategory={activeCategory}
+            onCategory={setActiveCategory}
+            activeFormat={activeFormat}
+            onFormat={setActiveFormat}
+            activeEnergy={activeEnergy}
+            onEnergy={setActiveEnergy}
+            sortKey={sortKey}
+            onSort={setSortKey}
+            onClear={clearAll}
+            hasActive={hasActiveFilters}
+          />
 
-      <ExerciseGrid exercises={filtered} onSelect={setSelected} />
+          <ExerciseGrid exercises={filtered} onSelect={setSelected} />
 
-      {selected && (
-        <Modal exercise={selected} onClose={() => setSelected(null)} />
+          {selected && (
+            <Modal exercise={selected} onClose={() => setSelected(null)} />
+          )}
+        </>
       )}
     </div>
   );

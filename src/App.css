@@ -904,6 +904,175 @@ body::after {
   .modal__title-row { flex-direction: column; gap: 0.5rem; }
 }
 
+/* ── Nav link ───────────────────────────────────────────── */
+.nav-link {
+  padding: 0 1.25rem;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.2s var(--ease);
+}
+
+.nav-link:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-strong);
+  transform: translateY(-1px);
+}
+
+/* ── Contact page ───────────────────────────────────────── */
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+.contact-page__header {
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-page__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.contact-page__subtitle {
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+.contact-page__back {
+  flex: 0 0 auto;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.contact-page__back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  background: var(--glass-bg);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+.contact-form {
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form__title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.contact-form__description {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.contact-form__note {
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg-hover);
+  border: 1px solid var(--glass-border-strong);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-form__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.contact-form__input {
+  padding: 0.75rem 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.contact-form__input::placeholder { color: var(--text-faint); }
+
+.contact-form__input:focus {
+  outline: none;
+  border-color: var(--accent-1);
+  background: var(--glass-bg-hover);
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.18);
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.contact-form__submit {
+  margin-top: 0.25rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 6px 18px rgba(167, 139, 250, 0.35);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease);
+}
+
+.contact-form__submit:hover { transform: translateY(-1px); }
+
+@media (max-width: 720px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-page__header { flex-direction: column; align-items: flex-start; }
+}
+
 /* ── Focus visibility ───────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--accent-1);
@@ -919,6 +1088,9 @@ body::after {
 .theme-toggle:focus-visible,
 .accent-picker__swatch:focus-visible,
 .accent-picker__reset:focus-visible,
+.nav-link:focus-visible,
+.contact-page__back:focus-visible,
+.contact-form__submit:focus-visible,
 .modal__close:focus-visible {
   outline-offset: 2px;
 }
