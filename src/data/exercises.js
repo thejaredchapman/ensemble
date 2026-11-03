@@ -147,7 +147,7 @@ export const exercises = [
   },
   {
     id: 6,
-    title: "Blind Line",
+    title: "Surprise Line",
     emoji: "📝",
     categories: ["creativity", "writing"],
     format: "pair",
@@ -162,7 +162,7 @@ export const exercises = [
       "Shuffle and distribute — no one gets their own.",
       "Pairs or trios receive a scene premise.",
       "At any point during the scene, use your line organically.",
-      "The audience tries to identify when the blind line appears.",
+      "The audience tries to identify when the surprise line appears.",
       "Reveal the lines afterward.",
     ],
     benefits: [
@@ -171,7 +171,7 @@ export const exercises = [
       "Develops the skill of making anything feel intentional",
       "Celebrates resourcefulness over perfection",
     ],
-    variations: "Use overheard phrases, book titles, or news headlines as the blind lines.",
+    variations: "Use overheard phrases, book titles, or news headlines as the surprise lines.",
     debrief: ["What was your strategy when the line didn't fit?", "Where do unexpected constraints show up at work?"],
     tags: ["creativity", "constraint", "adaptation"],
   },
